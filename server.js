@@ -2,7 +2,11 @@ var express = require('express');
 var babelify = require('express-babelify-middleware');
 var app = express();
 
-app.use('/app.js', babelify(__dirname + "/jsx/app.jsx"))
+var opts = {
+  cache: false, // rebuild with each request
+}
+
+app.use('/app.js', babelify(__dirname + "/jsx/app.jsx", opts))
 app.use(express.static('public'));
 
 var server = app.listen(3000, function () {
